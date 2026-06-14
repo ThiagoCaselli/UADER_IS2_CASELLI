@@ -27,3 +27,4 @@ try:
 
 except FileNotFoundError:
     print(f"Error: No se encontró el archivo {jsonfile}. Asegurate de que esté en la misma carpeta.")
+    
