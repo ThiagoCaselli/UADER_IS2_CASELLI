@@ -1,0 +1,8 @@
+pytest>=7.0
+pytest-cov>=4.0
+ruff>=0.1.0
+black>=23.0
+mypy>=1.5
+pyright>=1.1
+bandit>=1.7
+pdoc>=14.0
