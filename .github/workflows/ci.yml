@@ -1,0 +1,34 @@
+name: Integracion Continua TP11
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/TP11
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r REQUIREMENTS.TXT
+    - name: Formato con Black
+      run: black . --check
+    - name: Linter con Ruff
+      run: ruff check .
+    - name: Type Check con MyPy
+      run: mypy json2csv.py
+    - name: Type Check con PyRight
+      run: pyright json2csv.py
+    - name: Test de Seguridad con Bandit
+      run: bandit -r json2csv.py
+    - name: Tests Unitarios y Cobertura
+      run: pytest --cov=json2csv --fail-under=85
+    - name: Generar Documentación pdoc
+      run: pdoc --html json2csv.py --force --output-dir docs/
