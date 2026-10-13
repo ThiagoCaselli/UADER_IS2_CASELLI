@@ -1,6 +1,5 @@
 import io
 import pytest
-import json
 from json2csv import convert_json_to_csv
 
 
