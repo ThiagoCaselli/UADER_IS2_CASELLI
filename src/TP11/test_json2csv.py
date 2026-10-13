@@ -3,6 +3,7 @@ import pytest
 import json
 from json2csv import convert_json_to_csv
 
+
 def test_convert_json_to_csv_success():
     # Simula un archivo JSON de entrada
     json_data = '[{"nombre": "Thiago", "edad": 21}, {"nombre": "Gael", "edad": 20}]'
@@ -16,6 +17,7 @@ def test_convert_json_to_csv_success():
     result = out_stream.getvalue()
     assert "nombre,edad" in result
     assert "Thiago,21" in result
+
 
 def test_convert_json_to_csv_invalid_format():
     # JSON que no es una lista de diccionarios

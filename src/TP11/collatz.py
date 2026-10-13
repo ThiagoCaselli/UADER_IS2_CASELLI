@@ -7,7 +7,7 @@ def collatz(num):
         raise ValueError("El número debe ser positivo.")
     if num > 1999:
         raise ValueError("Límite superado. Máximo 1999.")
-        
+
     iteraciones = 0
     while num != 1:
         if num % 2 == 0:
@@ -15,8 +15,9 @@ def collatz(num):
         else:
             num = 3 * num + 1
         iteraciones += 1
-        
+
     return iteraciones
+
 
 # Comprobando los resultados y aceptando ingreso por teclado
 if __name__ == "__main__":
