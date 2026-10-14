@@ -18,6 +18,7 @@ def collatz(num):
 
     return iteraciones
 
+
 # Comprobando los resultados y aceptando ingreso por teclado
 if __name__ == "__main__":
     try:
