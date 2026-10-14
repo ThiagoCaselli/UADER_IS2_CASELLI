@@ -1,5 +1,7 @@
 import io
+
 import pytest
+
 from json2csv import convert_json_to_csv
 
 

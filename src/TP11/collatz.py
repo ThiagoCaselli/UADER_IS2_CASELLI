@@ -2,7 +2,7 @@
 def collatz(num):
     # Validación de requerimientos de límite y tipo
     if not isinstance(num, int):
-        raise ValueError("Debe ser un número entero.")
+        raise TypeError("Debe ser un número entero.")
     if num <= 0:
         raise ValueError("El número debe ser positivo.")
     if num > 1999:
@@ -18,14 +18,13 @@ def collatz(num):
 
     return iteraciones
 
-
 # Comprobando los resultados y aceptando ingreso por teclado
 if __name__ == "__main__":
     try:
         entrada = input("Ingrese un número entero positivo (máx 1999): ")
         i = int(entrada)
         total_iter = collatz(i)
-        print("El número de partida es %d" % i)
-        print("El número de iteraciones para %d es %d" % (i, total_iter))
-    except ValueError as e:
-        print("Error de validación:", e)
+        print(f"El número de partida es {i}")
+        print(f"El número de iteraciones para {i} es {total_iter}")
+    except (ValueError, TypeError) as e:
+        print(f"Error de validación: {e}")
