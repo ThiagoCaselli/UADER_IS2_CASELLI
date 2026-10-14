@@ -75,27 +75,24 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    # Manejo robusto de I/O
-    in_file: TextIO = (
-        open(args.input, "r", encoding="utf-8") if args.input else sys.stdin
-    )  # noqa: SIM115
-    out_file: TextIO = (
-        open(args.output, "w", encoding="utf-8", newline="")
-        if args.output
-        else sys.stdout
-    )  # noqa: SIM115
-
     try:
-        convert_json_to_csv(in_file, out_file, args.delimiter)
+        if args.input and args.output:
+            with open(args.input, "r", encoding="utf-8") as in_file, open(
+                args.output, "w", encoding="utf-8", newline=""
+            ) as out_file:
+                convert_json_to_csv(in_file, out_file, args.delimiter)
+        elif args.input:
+            with open(args.input, "r", encoding="utf-8") as in_file:
+                convert_json_to_csv(in_file, sys.stdout, args.delimiter)
+        elif args.output:
+            with open(args.output, "w", encoding="utf-8", newline="") as out_file:
+                convert_json_to_csv(sys.stdin, out_file, args.delimiter)
+        else:
+            convert_json_to_csv(sys.stdin, sys.stdout, args.delimiter)
+
     except (ValueError, OSError) as e:
         print(f"Error fatal durante la conversión: {e}", file=sys.stderr)
         sys.exit(1)
-    finally:
-        # Solo cerramos los archivos si no son los streams estándar
-        if in_file is not sys.stdin:
-            in_file.close()
-        if out_file is not sys.stdout:
-            out_file.close()
 
 
 if __name__ == "__main__":
