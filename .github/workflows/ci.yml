@@ -31,4 +31,4 @@ jobs:
     - name: Tests Unitarios y Cobertura
       run: pytest --cov=json2csv --cov-fail-under=85
     - name: Generar Documentación pdoc
-      run: pdoc --html json2csv.py --force --output-dir docs/
+      run: pdoc json2csv.py -o docs/
